@@ -1,0 +1,15 @@
+#/usr/software/bin/python3.9 rotate_handler_test.py
+#20220722 130502 [MainThread:rotate_handler_test:6] [INFO] hello world
+#20220722 130502 [MainThread:rotate_handler_test:7] [INFO] This should split into multiple files
+#20220722 130502 [MainThread:rotate_handler_test:8] [INFO] one more for good measure
+#[ssankapp@scspr2593104003 lib]$ ls f
+#file.log    file.log.1  file.log.2  file.log.3 
+
+from pynate.log import getLogger
+from pynate.log.handler.default import RotatingFileHandler
+log = getLogger()
+handler = RotatingFileHandler("file.log", maxBytes=2, backupCount=10)
+log.addHandler(handler)
+log.info("hello world")
+log.info("This should split into multiple files")
+log.info("one more for good measure")
